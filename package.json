@@ -1,0 +1,28 @@
+{
+  "name": "kwaai-crud",
+  "version": "0.0.1",
+  "description": "CRUD helpers for mongoDB",
+  "main": "./index.js",
+  "author": {
+    "name": "Martin Naude",
+    "email": "martin@entelect.co.za"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/martinza78/kwaai-crud"
+  },
+  "dependencies": {
+      "jsonpatch": "~1.0.0-rc1",
+      "mongodb": "~1.4.4",
+      "mquery": "~0.8.0",
+      "kwaai-schema":"~0.0.1",
+      "kwaai-mongo":"~0.0.1"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/martinza78/kwaai-crud",
+  "_id": "kwaai-crud@0.0.1",
+  "_from": "kwaai-crud@"
+}
