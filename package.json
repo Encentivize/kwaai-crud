@@ -1,6 +1,6 @@
 {
   "name": "kwaai-crud",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CRUD helpers for mongoDB",
   "main": "./index.js",
   "author": {
@@ -13,16 +13,16 @@
   },
   "dependencies": {
       "jsonpatch": "~1.0.0-rc1",
-      "mongodb": "~1.4.4",
-      "mquery": "~0.8.0",
+      "mongodb": "~1.4.7",
+      "mquery": "~1.0.0",
       "kwaai-schema":"~0.0.1",
-      "kwaai-mongo":"~0.0.1"
+      "kwaai-mongo":"~0.0.2"
   },
   "engines": {
     "node": ">= 0.10.0"
   },
   "license": "MIT",
   "homepage": "https://github.com/martinza78/kwaai-crud",
-  "_id": "kwaai-crud@0.0.1",
+  "_id": "kwaai-crud@0.0.2",
   "_from": "kwaai-crud@"
 }
