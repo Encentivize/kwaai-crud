@@ -1,32 +1,65 @@
 var kwaaiCrud=require('./lib/crud.js');
-var kwaaiMongo=require("kwaai-mongo");
-
 var connectionString="mongodb://127.0.0.1:27017/testdb";
 
 
-function itemInserted(err,item){
-    if (err){console.error(err)}
-
-    else{console.log("item inserted:" + item.count)}
+var schema={
+    properties:{
+        name:{type:"string"},
+        description:{type:"string"}
+    },
+    required:["name"]
 }
 
-kwaaiMongo.connectToCollection("testcrud",connectionString,function(err){
+var validdoc={
+    name:"test1",
+    description:"test1"
+}
 
-for (var i=0;i<10;i++){
-    kwaaiCrud.insert({
-        schema:{
-            properties:{
-                name:{type:"string"},
-                count:{type:"integer"},
-                value:{type:"string"}
-            }
-        },
-        collection:{name:"testcrud",connectionString:connectionString},
-        validate:true,
-        data:{
-            name:"test",
-            count:i,
-            value:"some value"
-        }
-    },itemInserted)
-}})
+var invaliddoc={
+    description:"test1"
+}
+
+
+
+function operationCompleted(err,value){
+    if (err){console.error(err)}
+    else{console.log(value)}
+}
+
+
+console.log("insert check arguments")
+kwaaiCrud.insert({
+},operationCompleted)
+
+//invalid data
+console.log("insert invalid data")
+kwaaiCrud.insert({
+    validate:true,
+    collection:{name:"test collection",connectionString:connectionString},
+    schema:schema,
+    data:invaliddoc
+},operationCompleted)
+
+
+console.log("check schema if validate true")
+kwaaiCrud.insert({
+    validate:true,
+    collection:{name:"test collection",connectionString:connectionString},
+    data:invaliddoc
+},operationCompleted)
+
+
+console.log("insert data no schema")
+kwaaiCrud.insert({
+    validate:false,
+    collection:{name:"test collection",connectionString:connectionString},
+    data:validdoc
+},operationCompleted)
+
+console.log("insert data")
+kwaaiCrud.insert({
+    validate:true,
+    collection:{name:"test collection",connectionString:connectionString},
+    data:validdoc,
+    schema:schema
+},operationCompleted)
