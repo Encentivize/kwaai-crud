@@ -25,7 +25,7 @@ function operationCompleted(err,value){
     if (err){console.error(err)}
     else{console.log(value)}
 }
-
+/*
 
 console.log("insert check arguments")
 kwaaiCrud.insert({
@@ -63,3 +63,17 @@ kwaaiCrud.insert({
     data:validdoc,
     schema:schema
 },operationCompleted)
+*/
+
+kwaaiCrud.getByQuery({
+    collection:{name:"test collection",connectionString:connectionString},
+    query:{
+        name:"test2"
+    },
+    rawQuery:{
+        select:{name:1,description:1}
+    }
+},function(err,val){
+    console.log(val)
+
+})
