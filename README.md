@@ -36,6 +36,15 @@ options:
 @query(string): query to add to the id search. Useful for multitenant or environments where you want to limit results. 
 @rawQuery(object): the raw mongo query to use if you don't want to parse the normal query.
 @schema(object): JSON schema object to merge the schema links into on return for hyperschema
+
+
+###aggregate(options,callback)
+ performs an aggregate
+ options:
+ @collection(collection object or locator): mongodb native collection or locator {name:"name",connectionstring:"connectionstring"}
+ @pipeline(array): mongo compliant aggregate pipeline.
+ @allowDiskUse: allow write to fisk for large queries
+ @readPreference: allow reading from other members of the array
      
 ###countByQuery(options,callback)
 returns a record count based on a query
@@ -44,6 +53,8 @@ options:
 @query(string): query to add to the id search. Useful for multitenant or environments where you want to limit results.
 @rawQuery(object): the raw mongo query to use if you don't want to parse the normal query.
 @schema(object): JSON schema object to merge the schema links into on return for hyperschema
+
+Be careful using rawQuery, can cause problems if anything but count and where are used.
 
 ###getFirstOrNull(options,callback)
  gets a record by query and returns the first item or null
