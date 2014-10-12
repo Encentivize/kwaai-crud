@@ -1,6 +1,27 @@
 var connectionString="mongodb://127.0.0.1:27017/testdb";
 var kwaaiCrud=require('./index.js').crudTools(connectionString);
 
+
+kwaaiCrud.getByQuery({
+    collection:"test collection",
+    query:{
+        select:"name"
+    },
+    rawQuery:{
+        select:{name:1,description:1},
+        find:{
+            name:"testDistinct"}
+    }
+},function(err,val){
+    if (err){console.error(err)}
+    console.log(val)
+
+})
+
+
+return;
+
+
 var schema={
     properties:{
         name:{type:"string"},
@@ -36,19 +57,6 @@ kwaaiCrud.generateDataPatch({
 
 
 
-kwaaiCrud.getByQuery({
-    collection:"test collection",
-    query:{
-        select:"name"
-    },
-    rawQuery:{
-        select:{name:1,description:1}
-    }
-},function(err,val){
-    if (err){console.error(err)}
-    console.log(val)
-
-})
 
 kwaaiCrud.countByQuery({
     collection:"test collection",
