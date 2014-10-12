@@ -1,6 +1,5 @@
-var kwaaiCrud=require('./lib/crud.js');
 var connectionString="mongodb://127.0.0.1:27017/testdb";
-var mongo=require("mongodb");
+var kwaaiCrud=require('./index.js').crudTools(connectionString);
 
 var schema={
     properties:{
