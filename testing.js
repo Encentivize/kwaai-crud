@@ -23,39 +23,96 @@ var invaliddoc={
 
 function operationCompleted(err,value){
     if (err){console.error(err)}
-    else{console.log(value)}
-
-    process.exit(1)
 }
 
 kwaaiCrud.generateDataPatch({
-    collection:{name:"test collection",connectionString:connectionString},
+    collection:"test collection",
     id:"540af26377e3ed1c0568e4c4",
     data:[
-        {op:"add","path":"/anotherThing","value":"a value xxx"}
+        {op:"add","path":"/anotherThing","value":"a value dddxxx"}
 
     ]
 },operationCompleted)
 
 
 
+kwaaiCrud.getByQuery({
+    collection:"test collection",
+    query:{
+        select:"name"
+    },
+    rawQuery:{
+        select:{name:1,description:1}
+    }
+},function(err,val){
+    if (err){console.error(err)}
+    console.log(val)
+
+})
+
+kwaaiCrud.countByQuery({
+    collection:"test collection",
+    rawQuery:{
+        where:{name:"test2"}
+    }
+
+},function(err,val){
+    if (err){console.error(err)}else{
+    console.log(val);}
+
+})
+
+kwaaiCrud.insert({
+    validate:true,
+    collection:"test collection",
+    schema:schema,
+    data:invaliddoc
+},function(err,val){
+    if (err){console.error(err)}else{
+        console.log(val);}
+
+})
+
+kwaaiCrud.insert({
+    validate:true,
+    collection:"test collection",
+    schema:schema,
+    data:validdoc
+},function(err,val){
+    if (err){console.error(err)}else{
+        console.log(val);}
+
+})
+
+kwaaiCrud.delete({
+    collection:"test collection",
+    id:"5400a4160b56b58c1a0e1979",
+    useName:true
+},function(err,val){
+    if (err){console.error(err)}else{
+        console.log(val);}
+
+})
+
+kwaaiCrud.updateFull({
+    validate:true,
+    collection:"test collection",
+    data:validdoc,
+    schema:schema,
+    id:"testDistinct",
+    useName:true
+},function(err,val){
+    if (err){console.error(err)}else{
+        console.log(val);}
+
+})
+
 /*
 
- kwaaiCrud.delete({
- collection:{name:"test collection",connectionString:connectionString},
- id:"5400a4160b56b58c1a0e1979",
- useName:true
- },operationCompleted)
 
 
- kwaaiCrud.updateFull({
- validate:true,
- collection:{name:"test collection",connectionString:connectionString},
- data:validdoc,
- schema:schema,
- id:"testDistinct",
- useName:true
- },operationCompleted)
+
+
 
 console.log("insert check arguments")
 kwaaiCrud.insert({
@@ -63,12 +120,7 @@ kwaaiCrud.insert({
 
 //invalid data
 console.log("insert invalid data")
-kwaaiCrud.insert({
-    validate:true,
-    collection:{name:"test collection",connectionString:connectionString},
-    schema:schema,
-    data:invaliddoc
-},operationCompleted)
+
 
 
 console.log("check schema if validate true")
@@ -113,29 +165,8 @@ kwaaiCrud.insert({
  })
 
 
-kwaaiCrud.getByQuery({
-    collection:{name:"test collection",connectionString:connectionString},
-    query:{
-        select:"name"
-    },
-    rawQuery:{
-        select:{name:1,description:1}
-    }
-},function(err,val){
-    console.log(val)
 
-})
 
- kwaaiCrud.countByQuery({
- collection:{name:"test collection",connectionString:connectionString},
- rawQuery:{
- where:{name:"test2"}
- }
-
- },function(err,val){
- console.log(val)
-
- })
 */
 
 
