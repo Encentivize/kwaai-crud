@@ -14,7 +14,7 @@
   "dependencies": {
       "mquery": "1.2.0",
       "kwaai-schema":"0.0.6",
-      "kwaai-mongo":"0.1.0",
+      "kwaai-mongo":"0.1.2",
       "fast-json-patch":"0.4.0"
   },
   "engines": {

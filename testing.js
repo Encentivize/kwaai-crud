@@ -1,8 +1,68 @@
 var connectionString="mongodb://127.0.0.1:27017/testdb";
 var kwaaiCrud=require('./index.js').crudTools(connectionString);
+var kwaaiCrudUtils=require('./index.js').utils;
+var schema={
+    properties:{
+        name:{type:"string"},
+        description:{type:"string"}
+    },
+    required:["name"]
+}
 
 
-kwaaiCrud.getByQuery({
+kwaaiCrud.updatePart({
+    validate:true,
+    collection:"test collection",
+    data:[
+        {
+            "op": "add",
+            "path": "/addVal2",
+            "value":"test"
+        }
+    ],
+    schema:schema,
+    id:"540af26377e3ed1c0568e4c4",
+    useName:true
+},function(err,val){
+    if (err){console.error(err)}else {
+        console.log(val);
+    }
+    return;
+
+})
+
+return;
+
+var testPatch=[
+    {
+        "op": "replace",
+        "path": "/addVal",
+        "value": "valreplaced"
+    },
+    {
+        "op": "add",
+        "path": "/testArr/-",
+        "value": "isnertedval"
+
+    },
+    {
+        "op": "add",
+        "path": "/testArr/1",
+        "value": "isneratpositiontedval"
+
+    }
+]
+var mongoUpdate=kwaaiCrudUtils.JSONPatchToMongo(testPatch);
+console.log(mongoUpdate)
+return;
+
+var validdoc={
+    "name":"testDistinct2343",
+    "description":"testDistinct34",
+    "addVal":"val123"
+}
+
+kwaaiCrud.countByQuery({
     collection:"test collection",
     query:{
         select:"name"
@@ -12,6 +72,20 @@ kwaaiCrud.getByQuery({
         find:{
             name:"testDistinct"}
     }
+
+},function(err,val){
+    if (err){console.error(err)}else{
+        console.log(val);}
+
+})
+return;
+
+
+
+
+kwaaiCrud.getById({
+    collection:"test collection",
+   id:"540af26377e3ed1c0568e4c4"
 },function(err,val){
     if (err){console.error(err)}
     console.log(val)
