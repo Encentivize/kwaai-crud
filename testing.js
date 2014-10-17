@@ -17,15 +17,38 @@ var schema={
     required:["name"]
 }
 
-
 kwaaiCrud.updatePart({
     validate:true,
     collection:"test collection",
     data:[
         {
+            "op": "replace",
+            "path": "/addVal",
+            "value": "valreplaced2"
+        }
+    ],
+    schema:schema,
+    id:"540af26377e3ed1c0568e4c4",
+    useName:true
+},function(err,val){
+    if (err){console.error(err)}else{
+        console.log(val);}
+
+})
+
+kwaaiCrud.updatePartUnsafe({
+    validate:true,
+    collection:"test collection",
+    data:[{
+        "op": "add",
+        "path": "/completed",
+        "value":"true"
+    },
+
+        {
             "op": "add",
-            "path": "/addVal2",
-            "value":"test"
+            "path": "/statuses/-",
+            "value":"test arr add 3"
         }
     ],
     schema:schema,
@@ -35,8 +58,6 @@ kwaaiCrud.updatePart({
     if (err){console.error(err)}else {
         console.log(val);
     }
-    return;
-
 })
 
 return;
@@ -61,9 +82,6 @@ var testPatch=[
     }
 ]
 var mongoUpdate=kwaaiCrudUtils.JSONPatchToMongo(testPatch);
-console.log(mongoUpdate)
-return;
-
 var validdoc={
     "name":"testDistinct2343",
     "description":"testDistinct34",
@@ -81,8 +99,6 @@ kwaaiCrud.countByQuery({
         console.log(val);}
 
 })
-return;
-
 
 
 
@@ -94,26 +110,8 @@ kwaaiCrud.getById({
         console.log(val);}
 
 })
-return;
 
-kwaaiCrud.updatePart({
-    validate:true,
-    collection:"test collection",
-    data:[
-        {
-            "op": "replace",
-            "path": "/addVal",
-            "value": "valreplaced"
-        }
-    ],
-    schema:schema,
-    id:"540af26377e3ed1c0568e4c4",
-    useName:true
-},function(err,val){
-    if (err){console.error(err)}else{
-        console.log(val);}
 
-})
 
 
 kwaaiCrud.getById({
@@ -124,8 +122,6 @@ kwaaiCrud.getById({
     console.log(val)
 
 })
-return;
-
 
 
 
