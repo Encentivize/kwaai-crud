@@ -9,6 +9,14 @@ var schema={
     required:["name"]
 }
 
+var schema={
+    properties:{
+        name:{type:"string"},
+        description:{type:"string"}
+    },
+    required:["name"]
+}
+
 
 kwaaiCrud.updatePart({
     validate:true,
@@ -64,13 +72,8 @@ var validdoc={
 
 kwaaiCrud.countByQuery({
     collection:"test collection",
-    query:{
-        select:"name"
-    },
     rawQuery:{
-        select:{name:1,description:1},
-        find:{
-            name:"testDistinct"}
+        where:{name:"testDistinct2343"}
     }
 
 },function(err,val){
@@ -87,27 +90,49 @@ kwaaiCrud.getById({
     collection:"test collection",
    id:"540af26377e3ed1c0568e4c4"
 },function(err,val){
-    if (err){console.error(err)}
-    console.log(val)
+    if (err){console.error(err)}else{
+        console.log(val);}
+
+})
+return;
+
+kwaaiCrud.updatePart({
+    validate:true,
+    collection:"test collection",
+    data:[
+        {
+            "op": "replace",
+            "path": "/addVal",
+            "value": "valreplaced"
+        }
+    ],
+    schema:schema,
+    id:"540af26377e3ed1c0568e4c4",
+    useName:true
+},function(err,val){
+    if (err){console.error(err)}else{
+        console.log(val);}
 
 })
 
 
+kwaaiCrud.getById({
+    collection:"test collection",
+   id:"540af26377e3ed1c0568e4c4"
+},function(err,val){
+    if (err){console.error(err)}
+    console.log(val)
+
+})
 return;
 
 
-var schema={
-    properties:{
-        name:{type:"string"},
-        description:{type:"string"}
-    },
-    required:["name"]
-}
+
 
 var validdoc={
-    name:"testDistinct",
-    description:"testDistinct",
-    addVal:"val2"
+    "name":"testDistinct",
+    "description":"testDistinct",
+    "addVal":"val2"
 }
 
 var invaliddoc={
@@ -189,6 +214,9 @@ kwaaiCrud.updateFull({
 
 })
 
+
+
+
 /*
 
 
@@ -251,4 +279,15 @@ kwaaiCrud.insert({
 
 */
 
+kwaaiCrud.updateFull({
+    validate:true,
+    collection:"test collection",
+    data:validdoc,
+    schema:schema,
+    id:"540af26377e3ed1c0568e4c4",
+    useName:true
+},function(err,val){
+    if (err){console.error(err)}else{
+        console.log(val);}
 
+})
