@@ -1,6 +1,8 @@
 var connectionString="mongodb://127.0.0.1:27017/testdb";
 
 
+
+
 var kwaaiCrud=require('./index.js').crudTools(connectionString,null,
     function(err){
         if (err){
