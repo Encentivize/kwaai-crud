@@ -1,64 +1,94 @@
 var connectionString="mongodb://127.0.0.1:27017/testdb";
-var kwaaiCrud=require('./index.js').crudTools(connectionString);
+
+
+var kwaaiCrud=require('./index.js').crudTools(connectionString,null,
+    function(err){
+        if (err){
+            return console.error(err);}
+        else{
+            return run();
+        }
+    });
+
+
 var kwaaiCrudUtils=require('./index.js').utils;
-var schema={
-    properties:{
-        name:{type:"string"},
-        description:{type:"string"}
-    },
-    required:["name"]
-}
+var mongo=require("mongodb");
 
-var schema={
-    properties:{
-        name:{type:"string"},
-        description:{type:"string"}
-    },
-    required:["name"]
-}
 
-kwaaiCrud.updatePart({
-    validate:true,
-    collection:"test collection",
-    data:[
-        {
-            "op": "replace",
-            "path": "/addVal",
-            "value": "valreplaced2"
-        }
-    ],
-    schema:schema,
-    id:"540af26377e3ed1c0568e4c4",
-    useName:true
-},function(err,val){
-    if (err){console.error(err)}else{
-        console.log(val);}
-
-})
-
-kwaaiCrud.updatePartUnsafe({
-    validate:true,
-    collection:"test collection",
-    data:[{
-        "op": "add",
-        "path": "/completed",
-        "value":"true"
-    },
-
-        {
-            "op": "add",
-            "path": "/statuses/-",
-            "value":"test arr add 3"
-        }
-    ],
-    schema:schema,
-    id:"540af26377e3ed1c0568e4c4",
-    useName:true
-},function(err,val){
-    if (err){console.error(err)}else {
-        console.log(val);
+function run(){
+    var schema={
+        properties:{
+            name:{type:"string"},
+            description:{type:"string"}
+        },
+        required:["name"]
     }
-})
+
+    var schema={
+        properties:{
+            name:{type:"string"},
+            description:{type:"string"}
+        },
+        required:["name"]
+    }
+
+    kwaaiCrud.updatePart({
+        validate:true,
+        collection:"test collection",
+        data:[
+            {
+                "op": "replace",
+                "path": "/addVal",
+                "value": "valreplaced2"
+            }
+        ],
+        schema:schema,
+        id:"540af26377e3ed1c0568e4c4",
+        useName:true
+    },function(err,val){
+        if (err){console.error(err)}else{
+            console.log(val);}
+
+    })
+
+    kwaaiCrud.updatePartUnsafe({
+        validate:true,
+        collection:"test collection",
+        data:[{
+            "op": "add",
+            "path": "/completed",
+            "value":"true"
+        },
+
+            {
+                "op": "add",
+                "path": "/statuses/-",
+                "value":"test arr add 3"
+            }
+        ],
+        schema:schema,
+        id:"540af26377e3ed1c0568e4c4",
+        useName:true
+    },function(err,val){
+        if (err){console.error(err)}else {
+            console.log(val);
+        }
+    })
+
+
+    kwaaiCrud.getById({
+        collection:"test collection",
+        id:"540af26377e3ed1c0568e4c4"
+    },function(err,val){
+        if (err){console.error(err)}else{
+            console.log(val);}
+
+    })
+
+}
+
+
+
 
 return;
 
@@ -101,15 +131,6 @@ kwaaiCrud.countByQuery({
 })
 
 
-
-kwaaiCrud.getById({
-    collection:"test collection",
-   id:"540af26377e3ed1c0568e4c4"
-},function(err,val){
-    if (err){console.error(err)}else{
-        console.log(val);}
-
-})
 
 
 
