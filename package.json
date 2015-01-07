@@ -21,7 +21,7 @@
     "node": ">= 0.10.0"
   },
   "license": "MIT",
-  "homepage": "https://github.com/martinza78/kwaai-crud",
+  "homepage": "https://github.com/Encentivize/kwaai-crud",
   "_id": "kwaai-crud@0.1.4",
   "_from": "kwaai-crud@"
 }
