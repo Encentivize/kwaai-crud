@@ -1,23 +1,25 @@
 var connectionString="mongodb://127.0.0.1:27017/testdb";
+var mongo=require("mongodb");
+var kwaaiCrud=null;
 
+var _db=null;
 
-
-
-var kwaaiCrud=require('./index.js').crudTools(connectionString,null,
-    function(err){
-        if (err){
-            return console.error(err);}
-        else{
-            return run();
-        }
-    });
+mongo.MongoClient.connect(connectionString,null,function(err,database){
+    if (err){return callback(err);}
+    _db=database;
+    kwaaiCrud=require('./index.js').crudTools(_db);
+    run();
+});
 
 
 var kwaaiCrudUtils=require('./index.js').utils;
-var mongo=require("mongodb");
+
 
 
 function run(){
+
+
+
     var schema={
         properties:{
             name:{type:"string"},
@@ -41,7 +43,7 @@ function run(){
             {
                 "op": "replace",
                 "path": "/addVal",
-                "value": "valreplaced2"
+                "value": "valreplaced4"
             }
         ],
         schema:schema,
@@ -65,7 +67,7 @@ function run(){
             {
                 "op": "add",
                 "path": "/statuses/-",
-                "value":"test arr add 3"
+                "value":"test arr add 4"
             }
         ],
         schema:schema,
